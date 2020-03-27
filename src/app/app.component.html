@@ -1,0 +1,93 @@
+<div class="flex h-screen">
+  
+  <div class="w-full m-auto rounded overflow-hidden p-4">
+    
+    <span class="block text-gray-700 text-center px-4 py-2">
+      <img class="m-auto logo rounded-full" src="assets/privateinvestocat.jpg" alt="privateinvestocat">
+      
+      <h1 class="text-4xl">GitSpect</h1>
+      
+      <p>Inspect GitHub repositories to get useful informations about them.</p>
+    </span>
+    
+    <span class="block relative text-gray-700 text-center px-4 py-2 mt-2">
+      <div>
+        <label class="input-field inline-flex items-baseline border-none bg-white p-4">
+          <span class="flex-none text-gray-500 select-none text-2xl leading-none">github.com/</span>
+          <div class="flex-1 leading-none">
+            <input [formControl]="repo" id="handle" type="text"
+            class="placeholder-blue w-full p-0 outline-none text-2xl text-dusty-blue-darker" name="handle"
+            placeholder="owner/repo">
+          </div>
+        </label>
+      </div>
+    </span>
+    
+    <span *ngIf="data" class="block m-auto text-gray-700 text-center px-4 py-2 mt-2 max-w-5xl">
+      <span class="block text-gray-700 text-center px-4 py-2">
+        <h2 class="text-3xl">Infos</h2>
+      </span>
+      <div class="flex flex-wrap">
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-xs">This project is</div>
+          <span class="text-2xl">{{ projectAge }}</span>
+          <span class="unit">yo.</span>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-xs">Last updated</div>
+          <div class="text-2xl">{{ lastUpdated }}</div>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-2xl">{{ data?.stargazers_count }}</div>
+          <div class="text-xs">Stargazers</div>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-2xl">{{ data?.open_issues }}</div>
+          <div class="text-xs">Open issues</div>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-2xl">{{ data?.forks }}</div>
+          <div class="text-xs">Forks</div>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-2xl">{{ data?.license?.spdx_id }}</div>
+          <div class="text-xs">License</div>
+        </div>
+      </div>
+    </span>
+    
+    <span *ngIf="data" class="block m-auto text-gray-700 text-center px-4 py-2 mt-2 max-w-5xl">
+      <span class="block text-gray-700 text-center px-4 py-2">
+        <h2 class="text-3xl">Features</h2>
+      </span>
+      <div class="flex flex-wrap">
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-xs">Has issues enabled</div>
+          <span class="text-2xl">{{ isEnabled(data?.has_issues) }}</span>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-xs">Has projects enabled</div>
+          <span class="text-2xl">{{ isEnabled(data?.has_projects) }}</span>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-xs">Has wiki enabled</div>
+          <span class="text-2xl">{{ isEnabled(data?.has_wiki) }}</span>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-xs">Has downloads enabled</div>
+          <span class="text-2xl">{{ isEnabled(data?.has_downloads) }}</span>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-xs">Has pages enabled</div>
+          <span class="text-2xl">{{ isEnabled(data?.has_pages) }}</span>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 bg-gray-200 border">
+          <div class="text-xs">Is not archived</div>
+          <span class="text-2xl">{{ isEnabled(!data?.archived) }}</span>
+        </div>
+      </div>
+    </span>
+    
+  </div>
+  
+</div>
