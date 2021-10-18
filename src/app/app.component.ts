@@ -24,7 +24,9 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.repo.valueChanges.subscribe((changes: string) => {
-      this.parseRepoData(changes);
+      if (/[\w\d-]+\/{1}[\w\d-]+/.test(changes)) {
+        this.parseRepoData(changes);
+      }
     });
   }
 
